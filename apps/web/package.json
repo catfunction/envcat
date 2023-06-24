@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "test": "jest",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -36,10 +37,15 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@types/jest": "^29.5.2",
     "@types/node": "^17.0.12",
     "@types/react": "18.2.14",
     "@types/react-dom": "^18.2.6",
     "eslint-config-custom": "workspace:*",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
     "postcss": "^8.4.24",
     "tailwindcss": "^3.3.2",
     "tsconfig": "workspace:*",
