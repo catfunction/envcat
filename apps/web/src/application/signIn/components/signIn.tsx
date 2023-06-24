@@ -21,8 +21,10 @@ import {
   FormMessage,
 } from "@src/components/ui/form";
 import { signIn as SignInAuth } from "next-auth/react";
-import { redirect, useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Cat, Loader2 } from "lucide-react";
+import { Alert, AlertDescription } from "@src/components/ui/alert";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -42,30 +44,43 @@ const SignIn = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const response = await SignInAuth("credentials", {
-      ...values,
-      redirect: false,
-    });
+    try {
+      const response = await SignInAuth("credentials", {
+        ...values,
+        redirect: false,
+      });
 
-    if (response.error === "InvalidCredentials") {
+      if (response.error === "InvalidCredentials") {
+        setSignInError(true);
+        return;
+      }
+
+      router.replace("/");
+    } catch {
       setSignInError(true);
-      return;
     }
-
-    router.replace("/");
   };
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="h-screen flex items-center justify-center flex-col">
+        <div className="h-screen flex items-center justify-center flex-col gap-5">
+          <div className="flex flex-row gap-2 items-center text-2xl font-semibold">
+            <Cat size={32} /> ENVCAT
+          </div>
           <Card className="min-w-[400px]">
             <CardHeader>
-              <CardTitle className="text-center">EnvCat</CardTitle>
+              <CardTitle className="text-center">Sign In</CardTitle>
             </CardHeader>
 
             <CardContent className="flex flex-col gap-4">
-              {signInError && <p>Invalid credentials</p>}
+              {signInError && (
+                <Alert variant="destructive" className="p-2">
+                  <AlertDescription>
+                    Email or password does not match
+                  </AlertDescription>
+                </Alert>
+              )}
               <FormField
                 control={form.control}
                 name="email"
@@ -94,7 +109,14 @@ const SignIn = () => {
               />
             </CardContent>
             <CardFooter>
-              <Button type="submit" className="w-full">
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={form.formState.isSubmitting}
+              >
+                {form.formState.isSubmitting && (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                )}
                 Login
               </Button>
             </CardFooter>
