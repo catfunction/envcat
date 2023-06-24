@@ -1,5 +1,6 @@
 {
   "private": true,
+  "name": "envcat",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
@@ -13,6 +14,5 @@
     "prettier": "^2.5.1",
     "turbo": "latest"
   },
-  "packageManager": "pnpm@7.15.0",
-  "name": "catenv"
+  "packageManager": "pnpm@7.15.0"
 }
