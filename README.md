@@ -1,81 +1,50 @@
-# Turborepo starter
+# EnvCat
 
-This is an official starter Turborepo.
+EnvCat is a powerful tool designed to manage environment variables for local application development. It simplifies the process of configuring and organizing environment variables, ensuring a smooth development experience.
 
-## Using this example
+## Features
 
-Run the following command:
+- **Effortless Environment Variable Management**: EnvCat provides a user-friendly interface to manage environment variables for your local development environment. Say goodbye to manual configuration and hello to simplicity.
 
-```sh
-npx create-turbo@latest
-```
+- **Centralized Variable Storage**: With EnvCat, you can store all your environment variables in a centralized location. This allows for easy access and modification, ensuring consistency across your development projects.
 
-## What's inside?
+- **Secure and Confidential**: Your environment variables contain sensitive information. EnvCat understands the importance of security and keeps your variables encrypted and confidential.
 
-This Turborepo includes the following packages/apps:
 
-### Apps and Packages
+## Getting Started
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+To start using EnvCat for managing your environment variables, follow these simple steps:
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+1. **Installation**: Clone the EnvCat repository to your local machine.
 
-### Utilities
+   ```shell
+   git clone https://github.com/catfunction/envcat.git
+   ```
 
-This Turborepo has some additional tools already setup for you:
+2. **Configuration**: Configure the necessary environment settings in the `.env` file provided. This file serves as a template for your environment variables.
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+3. **Setup**: Run the setup script to initialize EnvCat and create the required files.
 
-### Build
+   ```shell
+   pnpm install
+   ```
 
-To build all apps and packages, run the following command:
+4. **Usage**: Use the EnvCat module to interact with your environment variables. Here are some example code snippets:
 
-```
-cd my-turborepo
-pnpm build
-```
+     ```shell
+   pnpm run dev
+   ```
 
-### Develop
+## Contributing
 
-To develop all apps and packages, run the following command:
+Contributions to EnvCat are always welcome! To contribute:
 
-```
-cd my-turborepo
-pnpm dev
-```
+1. Fork the repository and clone it to your local machine.
 
-### Remote Caching
+2. Create a new branch for your feature or bug fix.
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+3. Implement your changes and ensure all tests pass.
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+4. Commit your changes and push them to your fork.
 
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+5. Submit a pull request, detailing the changes you made and their significance.
