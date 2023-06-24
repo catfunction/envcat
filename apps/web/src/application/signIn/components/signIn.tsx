@@ -44,17 +44,21 @@ const SignIn = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const response = await SignInAuth("credentials", {
-      ...values,
-      redirect: false,
-    });
+    try {
+      const response = await SignInAuth("credentials", {
+        ...values,
+        redirect: false,
+      });
 
-    if (response.error === "InvalidCredentials") {
+      if (response.error === "InvalidCredentials") {
+        setSignInError(true);
+        return;
+      }
+
+      router.replace("/");
+    } catch {
       setSignInError(true);
-      return;
     }
-
-    router.replace("/");
   };
 
   return (
