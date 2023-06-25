@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 const useProject = (id: string) => {
   return prisma.project.findUnique({
     where: { id },
-    include: { environment: { include: { variables: true } } },
+    include: { environments: { include: { variables: true } } },
   });
 };
 

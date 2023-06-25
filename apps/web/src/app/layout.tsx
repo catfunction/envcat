@@ -7,7 +7,7 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
       <body className={`${inter.variable} font-sans`}>{children}</body>

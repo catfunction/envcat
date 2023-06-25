@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import createEnvironment from "@src/application/project/action/createEnvironment";
+import createEnvironment from "@src/application/project/actions/createEnvironment";
 import { Button } from "@src/components/ui/button";
 import {
   Dialog,
