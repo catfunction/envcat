@@ -7,21 +7,17 @@ import passwordHash from "@src/lib/passwordHash";
 const prisma = new PrismaClient();
 
 const createAdminUser = async (values: { email: string; password: string }) => {
-  try {
-    const roleAdmin = await prisma.role.findFirst({
-      where: { name: "ADMIN" },
-    });
+  const roleAdmin = await prisma.role.findFirst({
+    where: { name: "ADMIN" },
+  });
 
-    await prisma.user.create({
-      data: {
-        email: values.email,
-        ...generatePassword(values.password),
-        role: { connect: { id: roleAdmin.id } },
-      },
-    });
-  } catch (e) {
-    console.error(e);
-  }
+  await prisma.user.create({
+    data: {
+      email: values.email,
+      ...generatePassword(values.password),
+      role: { connect: { id: roleAdmin.id } },
+    },
+  });
 };
 
 const generatePassword = (password: string) => {
