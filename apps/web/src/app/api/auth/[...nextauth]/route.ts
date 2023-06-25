@@ -2,13 +2,11 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient } from "database";
+import passwordHash from "@src/lib/passwordHash";
 
 const prisma = new PrismaClient();
 
 export const authOptions: NextAuthOptions = {
-  cookies: {
-    sessionToken: { name: "cat-token", options: { path: "/", httpOnly: true } },
-  },
   session: { strategy: "jwt" },
   providers: [
     CredentialsProvider({
@@ -20,11 +18,10 @@ export const authOptions: NextAuthOptions = {
         const user = await prisma.user.findFirst({
           where: {
             email: credentials.email,
-            password: credentials.password,
           },
         });
 
-        if (!user) {
+        if (checkPassword(user.password, user.salt)) {
           throw new Error("InvalidCredentials");
         }
 
@@ -36,6 +33,12 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/signin",
   },
+};
+
+const checkPassword = (password: string, salt: string) => {
+  const hash = passwordHash(password, salt);
+
+  return password === hash;
 };
 
 const handler = NextAuth(authOptions);

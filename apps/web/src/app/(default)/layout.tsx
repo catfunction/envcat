@@ -5,7 +5,7 @@ import { Input } from "@src/components/ui/input";
 import { Cat } from "lucide-react";
 import { Metadata } from "next";
 
-const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
+const DefaultLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex flex-col">
       <div className="border-b py-3 px-4 flex justify-between items-center">
