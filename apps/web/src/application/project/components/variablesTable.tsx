@@ -23,7 +23,7 @@ const VariablesTable = ({ project }: { project: projectWithEnvironments }) => {
         </div>
       ),
     },
-    ...project.environment.map((environment) => ({
+    ...project.environments.map((environment) => ({
       accessorKey: environment.name,
       header: environment.name,
       cell: ({ getValue, cell }) => (

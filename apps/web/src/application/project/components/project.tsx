@@ -4,17 +4,17 @@ import { Card, CardContent } from "@src/components/ui/card";
 import CreateEnvironment from "@src/application/project/components/createEnvironment";
 import VariablesTable from "@src/application/project/components/variablesTable";
 
-const Project = async ({ id }) => {
-  const project = await useProject(id);
+const Project = async ({ projectId }) => {
+  const project = await useProject(projectId);
 
   return (
     <div className="flex flex-col gap-4">
       <div className="flex justify-between items-center">
         <h2 className="font-bold text-2xl">{project.name}</h2>
-        <CreateEnvironment projectId={id} />
+        <CreateEnvironment projectId={projectId} />
       </div>
 
-      {project.environment.length === 0 && (
+      {project.environments.length === 0 && (
         <Card className="pb-4 pt-8">
           <CardContent>
             <div className="text-center flex flex-col items-center gap-2">
@@ -24,7 +24,7 @@ const Project = async ({ id }) => {
           </CardContent>
         </Card>
       )}
-      {project.environment.length > 0 && <VariablesTable project={project} />}
+      {project.environments.length > 0 && <VariablesTable project={project} />}
     </div>
   );
 };
