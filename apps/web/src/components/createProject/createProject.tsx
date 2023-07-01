@@ -43,7 +43,9 @@ const CreateProject = ({ closeDialog }: { closeDialog: () => void }) => {
       closeDialog();
 	  router.refresh()
       router.push(`/${response.id}`);
-    } catch (e) {}
+    } catch (e) {
+		form.setError("name", { message: "Unknown error" })
+	}
   };
 
   return (
