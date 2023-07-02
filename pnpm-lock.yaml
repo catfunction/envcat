@@ -32,9 +32,6 @@ importers:
       '@next-auth/prisma-adapter':
         specifier: ^1.0.7
         version: 1.0.7(@prisma/client@4.16.1)(next-auth@4.22.1)
-      '@next/font':
-        specifier: ^13.4.7
-        version: 13.4.7
       '@radix-ui/react-avatar':
         specifier: ^1.0.3
         version: 1.0.3(@types/react-dom@18.2.6)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)
@@ -872,7 +869,7 @@ packages:
       '@prisma/client': '>=2.26.0 || >=3'
       next-auth: ^4
     dependencies:
-      '@prisma/client': 4.16.1(prisma@4.16.1)
+      '@prisma/client': 4.16.1
       next-auth: 4.22.1(next@13.4.7)(react-dom@18.2.0)(react@18.2.0)
     dev: false
 
@@ -884,10 +881,6 @@ packages:
     resolution: {integrity: sha512-tVPS/2FKlA3ANCRCYZVT5jdbUKasBU8LG6bYqcNhyORDFTlDYa4cAWQJjZ7msIgLwMQIbL8CAsxrOL8maa/4Lg==}
     dependencies:
       glob: 7.1.7
-    dev: false
-
-  /@next/font@13.4.7:
-    resolution: {integrity: sha512-l28ifb3pjKznQeXmiCD5VXkmqdpMrcUQMr4ZChAgTKrjckl/aGyRLOIlL/ABhTHmzMujdt/TTWUsdABArNK5gA==}
     dev: false
 
   /@next/swc-darwin-arm64@13.4.7:
@@ -1003,6 +996,19 @@ packages:
       open: 9.1.0
       picocolors: 1.0.0
       tslib: 2.5.0
+    dev: false
+
+  /@prisma/client@4.16.1:
+    resolution: {integrity: sha512-CoDHu7Bt+NuDo40ijoeHP79EHtECsPBTy3yte5Yo3op8TqXt/kV0OT5OrsWewKvQGKFMHhYQ+ePed3zzjYdGAw==}
+    engines: {node: '>=14.17'}
+    requiresBuild: true
+    peerDependencies:
+      prisma: '*'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+    dependencies:
+      '@prisma/engines-version': 4.16.0-66.b20ead4d3ab9e78ac112966e242ded703f4a052c
     dev: false
 
   /@prisma/client@4.16.1(prisma@4.16.1):

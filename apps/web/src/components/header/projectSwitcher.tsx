@@ -21,14 +21,20 @@ import {
   PopoverTrigger,
 } from "@src/components/ui/popover";
 import { Box } from "lucide-react";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const ProjectSwitcher = ({ children }) => {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [showNewTeamDialog, setShowNewTeamDialog] = useState(false);
+  const [showProjectDialog, setProjectDialog] = useState(false);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   return (
-    <Dialog open={showNewTeamDialog} onOpenChange={setShowNewTeamDialog}>
+    <Dialog open={showProjectDialog} onOpenChange={setProjectDialog}>
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
@@ -36,9 +42,11 @@ const ProjectSwitcher = ({ children }) => {
             role="combobox"
             aria-expanded={open}
             aria-label="Select a team"
-            className="w-[200px] justify-between"
+            className="justify-between"
           >
-            Select a project
+            <div className="flex flex-row gap-2 items-center">
+              <Box size={18} /> Select a project
+            </div>
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-[200px] p-0">
@@ -49,8 +57,9 @@ const ProjectSwitcher = ({ children }) => {
                 <CommandItem
                   onSelect={() => {
                     setOpen(false);
-                    setShowNewTeamDialog(true);
+                    setProjectDialog(true);
                   }}
+                  className="font-semibold"
                 >
                   <Box className="mr-2 h-5 w-5" />
                   Create Project
@@ -62,12 +71,12 @@ const ProjectSwitcher = ({ children }) => {
       </Popover>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create project</DialogTitle>
+          <DialogTitle className="font-semibold">Create project</DialogTitle>
           <DialogDescription>
             Add a new project for your organization.
           </DialogDescription>
         </DialogHeader>
-        <CreateProject />
+        <CreateProject closeDialog={() => setProjectDialog(false)} />
       </DialogContent>
     </Dialog>
   );

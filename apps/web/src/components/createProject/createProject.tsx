@@ -21,7 +21,7 @@ const formSchema = z.object({
   description: z.string(),
 });
 
-const CreateProject = () => {
+const CreateProject = ({ closeDialog }: { closeDialog: () => void }) => {
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -32,9 +32,20 @@ const CreateProject = () => {
   });
 
   const onSubmit = async (values) => {
-    await createProject(values);
+    try {
+      const response = await createProject(values);
 
-    router.refresh();
+      if (response.error) {
+        form.setError("name", { message: response.error });
+        return;
+      }
+
+      closeDialog();
+	  router.refresh()
+      router.push(`/${response.id}`);
+    } catch (e) {
+		form.setError("name", { message: "Unknown error" })
+	}
   };
 
   return (
