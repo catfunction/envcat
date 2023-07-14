@@ -5,6 +5,7 @@ import { Metadata } from "next";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
 });
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {

@@ -3,6 +3,7 @@ import useProject from "@src/application/project/hooks/useProject";
 import { Card, CardContent } from "@src/components/ui/card";
 import CreateEnvironment from "@src/application/project/components/createEnvironment";
 import VariablesTable from "@src/application/project/components/variablesTable";
+import AddVariableForm from "@src/application/project/components/addVariableForm";
 
 const Project = async ({ projectId }) => {
   const project = await useProject(projectId);
@@ -24,6 +25,7 @@ const Project = async ({ projectId }) => {
           </CardContent>
         </Card>
       )}
+      <AddVariableForm environments={project.environments} />
       {project.environments.length > 0 && <VariablesTable project={project} />}
     </div>
   );
