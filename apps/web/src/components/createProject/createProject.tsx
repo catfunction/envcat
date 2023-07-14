@@ -41,11 +41,11 @@ const CreateProject = ({ closeDialog }: { closeDialog: () => void }) => {
       }
 
       closeDialog();
-	  router.refresh()
+      router.refresh();
       router.push(`/${response.id}`);
     } catch (e) {
-		form.setError("name", { message: "Unknown error" })
-	}
+      form.setError("name", { message: "Unknown error" });
+    }
   };
 
   return (

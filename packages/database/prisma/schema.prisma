@@ -96,4 +96,6 @@ model Variable {
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
   environment   Environment @relation(fields: [environmentId], references: [id])
+
+  @@unique([name, environmentId])
 }
