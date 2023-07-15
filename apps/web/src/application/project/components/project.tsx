@@ -15,6 +15,7 @@ const Project = async ({ projectId }) => {
         <CreateEnvironment projectId={projectId} />
       </div>
 
+      <AddVariableForm environments={project.environments} />
       {project.environments.length === 0 && (
         <Card className="pb-4 pt-8">
           <CardContent>
@@ -25,7 +26,6 @@ const Project = async ({ projectId }) => {
           </CardContent>
         </Card>
       )}
-      <AddVariableForm environments={project.environments} />
       {project.environments.length > 0 && <VariablesTable project={project} />}
     </div>
   );

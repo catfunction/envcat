@@ -4,15 +4,18 @@ import User from "@src/components/header/user";
 import { Input } from "@src/components/ui/input";
 import { Cat } from "lucide-react";
 import { Metadata } from "next";
+import Link from "next/link";
 
 const DefaultLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex flex-col pb-4">
       <div className="bg-white border-b py-3 px-4 flex justify-between items-center fixed left-0 right-0 top-0">
         <div className="flex gap-4 items-center">
-          <h1 className="text-lg font-semibold flex flex-row gap-1 items-center">
-            <Cat size={30} /> ENVCAT
-          </h1>
+          <Link href="/">
+            <h1 className="text-lg font-semibold flex flex-row gap-1 items-center">
+              <Cat size={30} /> ENVCAT
+            </h1>
+          </Link>
           <ProjectSwitcher>
             <ProjectList />
           </ProjectSwitcher>
