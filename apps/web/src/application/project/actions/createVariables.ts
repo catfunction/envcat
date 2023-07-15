@@ -29,10 +29,6 @@ const createVariables = async (values: {
         e instanceof Prisma.PrismaClientKnownRequestError &&
         e.code === "P2002"
       ) {
-        console.log({
-          variable: create.data.name,
-          error: `Variable name ${create.data.name} already exists`,
-        });
         return {
           variable: create.data.name,
           error: `Variable name ${create.data.name} already exists`,
