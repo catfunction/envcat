@@ -117,12 +117,9 @@ const AddVariableForm = ({ environments }: { environments: any[] }) => {
 
         return;
       }
-      form.reset();
-
-      router.refresh();
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
+    form.reset();
+    router.refresh();
   };
 
   return (

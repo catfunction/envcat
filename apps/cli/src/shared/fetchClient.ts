@@ -1,11 +1,7 @@
-import { readFileSync } from "fs";
+import getConfigFile from "@src/shared/getConfigFile";
 
 try {
-  const configFile = JSON.parse(
-    readFileSync(`./envcat.json`, {
-      encoding: "utf-8",
-    }),
-  );
+  const configFile = getConfigFile();
 
   globalThis.serverUrl = configFile.serverUrl;
 } catch (e: unknown) {}
