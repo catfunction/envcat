@@ -1,5 +1,5 @@
 {
-  "name": "envcat",
+  "name": "@catfunction/envcat",
   "version": "1.0.0",
   "main": "dist/cli.js",
   "bin": {
