@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "envcat",
   "scripts": {
     "build": "turbo run build",
