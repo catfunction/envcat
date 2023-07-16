@@ -2,10 +2,18 @@ import { PrismaClient } from "database";
 
 const prisma = new PrismaClient();
 
-const useProjects = ({ search }: { search: string }) => {
+const useProjects = ({
+  search,
+  includeVariables = true,
+}: {
+  search?: string;
+  includeVariables?: boolean;
+}) => {
   return prisma.project.findMany({
     where: search ? { name: { contains: search } } : {},
-    include: { environments: { include: { variables: true } } },
+    include: {
+      environments: includeVariables ? { include: { variables: true } } : {},
+    },
   });
 };
 
