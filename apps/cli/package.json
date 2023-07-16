@@ -1,7 +1,6 @@
 {
   "name": "envcat",
   "version": "1.0.0",
-  "private": true,
   "main": "dist/cli.js",
   "bin": {
     "dirmanager": "./dist/cli.js"
