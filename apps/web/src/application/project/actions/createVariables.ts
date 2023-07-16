@@ -1,6 +1,7 @@
 "use server";
 
 import { Prisma, PrismaClient } from "database";
+import { createId } from "@paralleldrive/cuid2";
 
 const prisma = new PrismaClient();
 
@@ -9,10 +10,17 @@ const createVariables = async (values: {
   variables: { name: string; value: string }[];
   environments: string[];
 }) => {
-  const createPromises: { data: any; promise: Promise<any> }[] = [];
+  const createVariablesPromises: { data: any; promise: Promise<any> }[] = [];
+  const createEnvironmentPromises: Promise<any>[] = [];
   values.environments.forEach((environment) => {
+    createEnvironmentPromises.push(
+      prisma.environment.update({
+        where: { id: environment },
+        data: { version: createId() },
+      }),
+    );
     values.variables.forEach((variable) => {
-      createPromises.push({
+      createVariablesPromises.push({
         data: variable,
         promise: prisma.variable.create({
           data: { ...variable, environmentId: environment },
@@ -21,7 +29,7 @@ const createVariables = async (values: {
     });
   });
 
-  for (const create of createPromises) {
+  for (const create of createVariablesPromises) {
     try {
       await create.promise;
     } catch (e) {
@@ -37,6 +45,12 @@ const createVariables = async (values: {
 
       return { variable: create.data.name, error: "Unexpected error occurred" };
     }
+  }
+
+  try {
+    await Promise.all(createEnvironmentPromises);
+  } catch (e) {
+    console.error(e);
   }
 };
 

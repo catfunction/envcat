@@ -58,7 +58,7 @@ class Init {
         {
           serverUrl: this.serverUrl,
           projectId: this.project.id,
-          environment: this.environment.name,
+          environmentId: this.environment.id,
         },
         null,
         2,
@@ -68,7 +68,10 @@ class Init {
   }
 
   private generateEnvFile() {
-    generateEnvFile(this.environment.variables);
+    generateEnvFile({
+      version: this.environment.version,
+      variables: this.environment.variables,
+    });
   }
 
   private showVariables() {
