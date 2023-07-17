@@ -17,7 +17,7 @@ import { Button } from "@src/components/ui/button";
 import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
-  name: z.string(),
+  name: z.string().nonempty(),
   description: z.string(),
 });
 

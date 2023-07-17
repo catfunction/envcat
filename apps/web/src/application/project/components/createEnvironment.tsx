@@ -26,7 +26,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const formSchema = z.object({
-  name: z.string(),
+  name: z.string().nonempty(),
 });
 
 const CreateEnvironment = ({ projectId }: { projectId: string }) => {
@@ -41,10 +41,20 @@ const CreateEnvironment = ({ projectId }: { projectId: string }) => {
   });
 
   const onSubmit = async (values) => {
-    await createEnvironment({ ...values, projectId });
-
-    setDialog(false);
-    router.refresh();
+    try {
+      const response = await createEnvironment({ ...values, projectId });
+      if (response?.error) {
+        form.setError("name", {
+          message: response.error,
+        });
+        return;
+      }
+      setDialog(false);
+      router.refresh();
+    } catch (e) {
+      form.setError("name", { message: "Unknown error" });
+      return;
+    }
   };
 
   return (
