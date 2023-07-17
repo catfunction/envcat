@@ -87,6 +87,8 @@ model Environment {
   updatedAt DateTime   @updatedAt
   project   Project    @relation(fields: [projectId], references: [id])
   variables Variable[]
+
+  @@unique([name, projectId])
 }
 
 model Variable {
