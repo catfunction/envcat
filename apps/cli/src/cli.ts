@@ -1,6 +1,7 @@
 import { program } from "commander";
 import init from "@src/application/init";
 import update from "@src/application/update";
+import change from "@src/application/change";
 
 program
   .name("envcat cli")
@@ -13,8 +14,15 @@ program
   .action(() => init.execute());
 
 program
-  .command("environment")
-  .argument("<string>", "update")
+  .command("update")
   .description("Update a environment with the latest version")
   .action(() => update.execute());
+
+program
+  .command("change")
+  .description("Change the active environment")
+  .action(() => {
+    change.execute();
+  });
+
 program.parse();
