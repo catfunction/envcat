@@ -16,7 +16,7 @@ class Change {
 
   private async askEnvironment() {
     const configFile = getConfigFile();
-    const project = await getProject({ id: configFile.projectId });
+    const project = await getProject.execute({ id: configFile.projectId });
 
     const environment = await select<Environment>({
       message: "Select environment to sync variables",
@@ -26,7 +26,7 @@ class Change {
       })),
     });
 
-    this.environment = await getEnvironment({ id: environment.id });
+    this.environment = await getEnvironment.execute({ id: environment.id });
   }
 
   private generateEnvFile() {

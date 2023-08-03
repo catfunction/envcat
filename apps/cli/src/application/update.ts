@@ -9,9 +9,11 @@ class Update {
 
   async execute() {
     const configFile = getConfigFile();
-    this.environment = await getEnvironment({ id: configFile.environmentId });
+    this.environment = await getEnvironment.execute({
+      id: configFile.environmentId,
+    });
 
-    if (this.checkVersion()) {
+    if (this.ifVersionIsSynchronized()) {
       this.showNothingToUpdate();
       return;
     }
@@ -20,7 +22,7 @@ class Update {
     this.showEnvFileUpdated();
   }
 
-  private checkVersion(): boolean {
+  private ifVersionIsSynchronized(): boolean {
     return this.latestVersionSync() === this.environment.version;
   }
 

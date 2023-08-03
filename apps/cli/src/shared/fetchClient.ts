@@ -13,7 +13,11 @@ const fetchClient = async ({ path }: { path: string }) => {
 
     return await response.json();
   } catch (e: unknown) {
-    console.error(`${e.message}, is server running at ${serverUrl}?`);
+    if (e instanceof Error && e.cause?.code === "ECONNREFUSED") {
+      console.error(`${e.message}, is server running at ${serverUrl}?`);
+      process.exit(1);
+    }
+
     process.exit(1);
   }
 };
