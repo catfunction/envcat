@@ -21,8 +21,6 @@ program
 program
   .command("change")
   .description("Change the active environment")
-  .action(() => {
-    change.execute();
-  });
+  .action(() => change.execute());
 
 program.parse();

@@ -28,7 +28,7 @@ class Init {
   }
 
   private async askProject() {
-    const projects = await getProjects();
+    const projects = await getProjects.execute();
 
     this.project = await select<typeof this.project>({
       message: "Select project to sync",
@@ -48,7 +48,7 @@ class Init {
       })),
     });
 
-    this.environment = await getEnvironment({ id: environment.id });
+    this.environment = await getEnvironment.execute({ id: environment.id });
   }
 
   private generateEnvcatConfigFile() {

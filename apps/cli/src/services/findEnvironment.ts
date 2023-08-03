@@ -1,9 +1,15 @@
 import fetchClient from "@src/shared/fetchClient";
 
-const findEnvironment = ({ name }: { name: string }) => {
-  return fetchClient({
-    path: `/environment/find/${name}`,
-  });
-};
+class FindEnvironment {
+  constructor(private readonly client: typeof fetchClient) {}
+
+  public execute({ name }: { name: string }) {
+    return this.client({
+      path: `/environments/find/${name}`,
+    });
+  }
+}
+
+const findEnvironment = new FindEnvironment(fetchClient);
 
 export default findEnvironment;
