@@ -5,13 +5,23 @@ const getDataFromProject = (project: projectWithEnvironments) => {
     (environment) => environment.variables,
   );
 
-  return variables.map((variable) => {
+  const groupedVariables = variables.reduce((acc, variable) => {
+    const name = variable.name;
+    if (!acc[name]) {
+      acc[name] = variable;
+    }
+    return acc;
+  }, {});
+
+  return Object.keys(groupedVariables).map((variable) => {
     return {
-      variable: variable.name,
+      variable,
       ...project.environments.reduce((acc, environment) => {
         acc[environment.name] = environment.variables.find((envVar) => {
-          return envVar.id === variable.id;
-        })?.value;
+          return (
+            variable === envVar.name && environment.id === envVar.environmentId
+          );
+        });
         return acc;
       }, {}),
     };

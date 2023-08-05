@@ -28,17 +28,20 @@ const VariablesTable = ({ project }: { project: projectWithEnvironments }) => {
       header: environment.name,
       cell: ({ getValue, cell }) => (
         <EditableCell
+          projectId={project.id}
+          environmentName={cell.column.id}
+          name={cell.row.original.variable}
           value={getValue()}
-          originalValue={cell.row.original[cell.column.id]}
+          original={cell.row.original[cell.column.id]}
         />
       ),
       accessorFn: (row) => {
-        const value = row[environment.name];
+        const cell = row?.[environment.name];
         if (!variablesVisible) {
-          return value ? "********" : "--";
+          return cell?.value ? "********" : "--";
         }
 
-        return value || "--";
+        return cell?.value || "--";
       },
     })),
   ];
