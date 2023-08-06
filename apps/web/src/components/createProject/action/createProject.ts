@@ -1,8 +1,6 @@
 "use server";
 
-import { Prisma, PrismaClient } from "database";
-
-const prisma = new PrismaClient();
+import { prisma, Prisma } from "database";
 
 const createProject = async (values: {
   name: string;

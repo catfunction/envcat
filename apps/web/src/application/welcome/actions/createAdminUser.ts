@@ -1,10 +1,8 @@
 "use server";
 
-import { PrismaClient } from "database";
+import { prisma } from "database";
 import crypto from "crypto";
 import passwordHash from "@src/lib/passwordHash";
-
-const prisma = new PrismaClient();
 
 const createAdminUser = async (values: { email: string; password: string }) => {
   const roleAdmin = await prisma.role.findFirst({

@@ -1,8 +1,6 @@
 "use server";
 
-import { PrismaClient } from "database";
-
-const prisma = new PrismaClient();
+import { prisma } from "database";
 
 const updateVariable = async ({ projectId, name, environmentName, value }) => {
   const environment = await prisma.environment.findFirst({

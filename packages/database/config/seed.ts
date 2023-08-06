@@ -1,5 +1,4 @@
-import { PrismaClient } from "..";
-const prisma = new PrismaClient();
+import { prisma } from "..";
 
 async function main() {
   await prisma.role.create({

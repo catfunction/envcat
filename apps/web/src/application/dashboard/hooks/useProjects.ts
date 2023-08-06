@@ -1,6 +1,4 @@
-import { PrismaClient } from "database";
-
-const prisma = new PrismaClient();
+import { prisma } from "database";
 
 const useProjects = ({
   search,
