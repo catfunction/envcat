@@ -1,10 +1,8 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { PrismaClient } from "database";
+import { prisma } from "database";
 import passwordHash from "@src/lib/passwordHash";
-
-const prisma = new PrismaClient();
 
 export const authOptions: NextAuthOptions = {
   session: { strategy: "jwt" },

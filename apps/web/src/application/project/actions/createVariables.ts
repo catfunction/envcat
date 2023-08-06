@@ -1,9 +1,7 @@
 "use server";
 
-import { Prisma, PrismaClient } from "database";
+import { prisma, Prisma } from "database";
 import { createId } from "@paralleldrive/cuid2";
-
-const prisma = new PrismaClient();
 
 const createVariables = async (values: {
   projectId: string;

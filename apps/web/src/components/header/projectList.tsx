@@ -1,7 +1,5 @@
 import ProjectSearch from "@src/components/header/projectSearch";
-import { PrismaClient } from "database";
-
-const prisma = new PrismaClient();
+import { prisma } from "database";
 
 const ProjectList = async () => {
   const projects = await prisma.project.findMany();
