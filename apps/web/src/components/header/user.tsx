@@ -1,4 +1,4 @@
-import { CreditCard, LogOut, PlusCircle, Settings, User2 } from "lucide-react";
+import { LogOut, User2 } from "lucide-react";
 import { Avatar, AvatarFallback } from "@src/components/ui/avatar";
 import { authOptions } from "@src/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
@@ -12,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@src/components/ui/dropdown-menu";
 import { Button } from "@src/components/ui/button";
+import Link from "next/link";
 
 const User = async () => {
   const session = await getServerSession(authOptions);
@@ -40,10 +41,12 @@ const User = async () => {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <User2 className="mr-2 h-4 w-4" />
-            <span>Profile</span>
-          </DropdownMenuItem>
+          <Link href="/profile/token">
+            <DropdownMenuItem>
+              <User2 className="mr-2 h-4 w-4" />
+              <span>Profile</span>
+            </DropdownMenuItem>
+          </Link>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>

@@ -1,8 +1,16 @@
-export { default } from "next-auth/middleware";
+import withAuth from "next-auth/middleware";
 
 export const config = {
-  matcher: ["/((?!signin|welcome|api).*)"],
+  matcher: ["/((?!signin|welcome).*)"],
   pages: {
     signIn: "/signin",
   },
 };
+
+export 	default withAuth({
+  cookies: {
+    sessionToken: {
+      name: "ENVCAT_TOKEN",
+    },
+  },
+});
