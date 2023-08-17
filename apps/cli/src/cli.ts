@@ -3,6 +3,11 @@ import init from "@src/application/init";
 import update from "@src/application/update";
 import change from "@src/application/change";
 
+if (!process.env.ENVCAT_TOKEN) {
+  console.log("❌ The ENVCAT_TOKEN token is not set");
+  process.exit(1);
+}
+
 program
   .name("envcat cli")
   .description("Environments variables sync cli 🚀")

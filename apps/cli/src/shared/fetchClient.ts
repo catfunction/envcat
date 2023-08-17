@@ -7,9 +7,15 @@ try {
 } catch (e: unknown) {}
 
 const fetchClient = async ({ path }: { path: string }) => {
+
   const serverUrl = globalThis.serverUrl;
+
   try {
-    const response = await fetch(`${serverUrl}/api${path}`);
+    const response = await fetch(`${serverUrl}/api${path}`, {
+      headers: {
+        cookie: `ENVCAT_TOKEN=${process.env.ENVCAT_TOKEN}`,
+      },
+    });
 
     return await response.json();
   } catch (e: unknown) {

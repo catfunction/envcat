@@ -6,6 +6,12 @@ import passwordHash from "@src/lib/passwordHash";
 
 export const authOptions: NextAuthOptions = {
   session: { strategy: "jwt" },
+  cookies: {
+    sessionToken: {
+      name: "ENVCAT_TOKEN",
+      options: { httpOnly: true, sameSite: "lax", path: "/", secure: true },
+    },
+  },
   providers: [
     CredentialsProvider({
       credentials: {
