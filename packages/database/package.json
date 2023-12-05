@@ -7,11 +7,11 @@
     "db:seed": "ts-node config/seed.ts"
   },
   "dependencies": {
-    "@prisma/client": "5.0.0",
+    "@prisma/client": "5.4.2",
     "prisma-field-encryption": "^1.5.0"
   },
   "devDependencies": {
-    "prisma": "5.0.0",
+    "prisma": "5.4.2",
     "ts-node": "^10.9.1"
   }
 }
