@@ -22,6 +22,7 @@ import {
   FormMessage,
 } from "@src/components/ui/form";
 import { Checkbox } from "@src/components/ui/checkbox";
+import { useEffect } from "react";
 
 const formSchema = z.object({
   variables: z.array(
@@ -36,10 +37,35 @@ const AddVariableForm = ({ environments }: { environments: any[] }) => {
     resolver: zodResolver(formSchema),
     defaultValues: { variables: [{ name: "", value: "" }], environments: [] },
   });
-  const { fields, append } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     control: form.control,
     name: "variables",
   });
+
+  useEffect(() => {
+    window.addEventListener("paste", onPasteEnv);
+
+    return () => {
+      window.removeEventListener("paste", onPasteEnv);
+    };
+  }, []);
+
+  const onPasteEnv = (e) => {
+    const data = e.clipboardData.getData("text");
+    data.split("\n").forEach((line: string) => {
+      const [name, value] = line.split(/=(.*)/s);
+
+      if (name) {
+        append({ name, value });
+      }
+    });
+
+    fields.forEach((field, index: number) => {
+      if (!field.name) {
+        remove(index);
+      }
+    });
+  };
 
   const addNewVariable = () => {
     append({ name: "", value: "" });
