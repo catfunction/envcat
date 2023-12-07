@@ -19,10 +19,14 @@ import { useEffect, useState } from "react";
 
 const ProjectSwitcher = ({ children }) => {
   const pathname = usePathname();
+  const [project, setProject] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setOpen(false);
+
+    const projectTitle = document.title.split("|")[1].trim();
+    setProject(projectTitle);
   }, [pathname]);
 
   return (
@@ -36,7 +40,7 @@ const ProjectSwitcher = ({ children }) => {
           className="justify-between"
         >
           <div className="flex flex-row gap-2 items-center">
-            <Box size={18} /> Select a project
+            <Box size={18} /> {project || "Select a project"}
           </div>
         </Button>
       </PopoverTrigger>
