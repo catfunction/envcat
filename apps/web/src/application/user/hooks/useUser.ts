@@ -1,6 +1,6 @@
+import { authOptions } from "@src/app/api/auth/[...nextauth]/options";
 import { prisma } from "database";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@src/app/api/auth/[...nextauth]/route";
 
 const useUser = async () => {
   const session = await getServerSession(authOptions);

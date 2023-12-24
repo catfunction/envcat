@@ -18,7 +18,7 @@ const CopyButton = ({ value }: { value: string }) => {
           <Copy size={14} />
           <span>Copied to clipboard</span>
         </div>
-      ),
+      ) as any,
     });
   };
 

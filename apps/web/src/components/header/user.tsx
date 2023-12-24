@@ -1,6 +1,5 @@
 import { LogOut, User2 } from "lucide-react";
 import { Avatar, AvatarFallback } from "@src/components/ui/avatar";
-import { authOptions } from "@src/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import {
   DropdownMenu,
@@ -13,6 +12,7 @@ import {
 } from "@src/components/ui/dropdown-menu";
 import { Button } from "@src/components/ui/button";
 import Link from "next/link";
+import { authOptions } from "@src/app/api/auth/[...nextauth]/options";
 
 const User = async () => {
   const session = await getServerSession(authOptions);
