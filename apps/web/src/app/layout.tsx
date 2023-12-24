@@ -1,12 +1,7 @@
 import "@src/globals.css";
-import { Inter } from "next/font/google";
 import { Metadata } from "next";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
+import { GeistSans } from "geist/font/sans";
+import { Toaster } from "@src/components/ui/toaster";
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
@@ -14,7 +9,10 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
       <head>
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </head>
-      <body className={`${inter.variable} font-sans`}>{children}</body>
+      <body className={`${GeistSans.className} font-sans`}>
+        <main>{children}</main>
+        <Toaster />
+      </body>
     </html>
   );
 };
