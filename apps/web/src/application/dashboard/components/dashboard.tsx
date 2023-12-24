@@ -16,14 +16,11 @@ const Dashboard = async ({ search }: { search: string }) => {
     }, 0);
 
     return (
-      <Link href={`/${project.id}`}>
+      <Link href={`/${project.id}`} key={project.id}>
         <Card className="hover:bg-slate-100 cursor-pointer">
           <CardHeader>
             <CardTitle className="text-md flex flex-row justify-between">
-              <div className="flex flex-col font-medium">
-                {project.name}
-                <span className="text-xs font-normal">v2590992</span>
-              </div>
+              <div className="flex flex-col font-medium">{project.name}</div>
               <div className="flex flex-row gap-3 items-center">
                 <div className="flex flex-row gap-1 font-medium items-center">
                   <File size={20} />

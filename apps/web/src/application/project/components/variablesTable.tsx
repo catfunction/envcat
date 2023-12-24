@@ -5,7 +5,7 @@ import { Button } from "@src/components/ui/button";
 import { useState } from "react";
 import { DataTable } from "@src/components/ui/dataTable";
 import { Input } from "@src/components/ui/input";
-import EditableCell from "@src/application/project/components/editableCell";
+import Cell from "@src/application/project/components/cell";
 import getDataFromProject from "@src/application/project/helpers/getDataFromProject";
 import { projectWithEnvironments } from "@src/application/project/types";
 
@@ -26,22 +26,19 @@ const VariablesTable = ({ project }: { project: projectWithEnvironments }) => {
     ...project.environments.map((environment) => ({
       accessorKey: environment.name,
       header: environment.name,
-      cell: ({ getValue, cell }) => (
-        <EditableCell
-          projectId={project.id}
-          environmentName={cell.column.id}
-          name={cell.row.original.variable}
-          value={getValue()}
-          original={cell.row.original[cell.column.id]}
-        />
+      cell: ({ getValue }) => (
+        <Cell value={getValue().value} hiddenValue={getValue().hiddenValue} />
       ),
       accessorFn: (row) => {
         const cell = row?.[environment.name];
         if (!variablesVisible) {
-          return cell?.value ? "********" : "--";
+          return {
+            value: cell?.value ? "********" : "--",
+            hiddenValue: cell?.value,
+          };
         }
 
-        return cell?.value || "--";
+        return { value: cell?.value || "--", hiddenValue: cell?.value };
       },
     })),
   ];
