@@ -25,7 +25,7 @@ const VariablesTable = ({ project }: { project: projectWithEnvironments }) => {
     },
     ...project.environments.map((environment) => ({
       accessorKey: environment.name,
-      header: environment.name,
+      header: "Values",
       cell: ({ getValue }) => (
         <Cell value={getValue().value} hiddenValue={getValue().hiddenValue} />
       ),
@@ -49,11 +49,12 @@ const VariablesTable = ({ project }: { project: projectWithEnvironments }) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex flex-row justify-between">
+      <div className="flex flex-row justify-between items-center">
         <Input placeholder="Search variables..." className="max-w-[300px]" />
         <Button
-          variant="outline"
-          className="flex flew-row gap-2"
+          variant="link"
+          size="sm"
+          className="flex flex-row gap-2"
           onClick={onClick}
         >
           {variablesVisible && <EyeOff />}
