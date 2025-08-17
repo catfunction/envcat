@@ -38,7 +38,7 @@ const Project = async ({ projectId }) => {
         </Card>
       )}
       {project.environments.length > 0 && (
-        <Tabs defaultValue={project.environments[0].name} className="w-full">
+        <Tabs defaultValue={project.environments[0]?.name ?? ""} className="w-full">
           <TabsList className="w-full">
             {project.environments.map((env) => (
               <TabsTrigger
