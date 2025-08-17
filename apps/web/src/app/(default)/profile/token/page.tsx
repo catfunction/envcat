@@ -3,8 +3,10 @@ import { Textarea } from "@src/components/ui/textarea";
 import { Label } from "@src/components/ui/label";
 import CopyButton from "@src/components/copyButton/copyButton";
 
-const TokenPage = () => {
-  const token = (cookies() as unknown as UnsafeUnwrappedCookies).get("ENVCAT_TOKEN").value;
+const ToknPage = async () => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("ENVCAT_TOKEN").value;
+
 
   return (
     <div className="flex-1 gap-4 flex flex-col">
