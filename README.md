@@ -1,50 +1,78 @@
 # EnvCat
 
-EnvCat is a powerful tool designed to manage environment variables for local application development. It simplifies the process of configuring and organizing environment variables, ensuring a smooth development experience.
+EnvCat is an open source tool for managing environment variables across local and cloud projects. It provides a CLI and web interface for secure, centralized, and versioned environment management.
+
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Features
 
-- **Effortless Environment Variable Management**: EnvCat provides a user-friendly interface to manage environment variables for your local development environment. Say goodbye to manual configuration and hello to simplicity.
+- Effortless environment variable management via CLI and web UI
+- Centralized variable storage for all your projects
+- Secure and encrypted variable handling
+- Versioning and history for environments
+- Easy integration with local and cloud workflows
 
-- **Centralized Variable Storage**: With EnvCat, you can store all your environment variables in a centralized location. This allows for easy access and modification, ensuring consistency across your development projects.
+## Installation
 
-- **Secure and Confidential**: Your environment variables contain sensitive information. EnvCat understands the importance of security and keeps your variables encrypted and confidential.
+Clone the repository and install dependencies:
 
+```sh
+git clone https://github.com/catfunction/envcat.git
+cd envcat
+pnpm install
+```
 
-## Getting Started
+## Usage
 
-To start using EnvCat for managing your environment variables, follow these simple steps:
+### CLI
 
-1. **Installation**: Clone the EnvCat repository to your local machine.
+Run the CLI to sync, update, or change environments:
 
-   ```shell
-   git clone https://github.com/catfunction/envcat.git
-   ```
+```sh
+pnpm --filter cli run execute
+```
 
-2. **Configuration**: Configure the necessary environment settings in the `.env` file provided. This file serves as a template for your environment variables.
+Available commands:
 
-3. **Setup**: Run the setup script to initialize EnvCat and create the required files.
+- `init` – Sync a project and generate config files
+- `update` – Update environment with the latest version
+- `change` – Change the active environment
 
-   ```shell
-   pnpm install
-   ```
+### Web
 
-4. **Usage**: Use the EnvCat module to interact with your environment variables. Here are some example code snippets:
+Start the web app for a graphical interface:
 
-     ```shell
-   pnpm run dev
-   ```
+```sh
+pnpm --filter web run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Project Structure
+
+- `apps/cli` – Command-line interface for environment management
+- `apps/web` – Next.js web application for managing projects and environments
+- `packages/database` – Prisma database package
+- `packages/eslint-config-custom` – Custom ESLint config
+- `packages/tsconfig` – Shared TypeScript configs
 
 ## Contributing
 
-Contributions to EnvCat are always welcome! To contribute:
+Contributions are welcome! To contribute:
 
-1. Fork the repository and clone it to your local machine.
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature-name`)
+3. Make your changes and add tests
+4. Commit and push your branch
+5. Open a pull request describing your changes
 
-2. Create a new branch for your feature or bug fix.
+## License
 
-3. Implement your changes and ensure all tests pass.
-
-4. Commit your changes and push them to your fork.
-
-5. Submit a pull request, detailing the changes you made and their significance.
+EnvCat is licensed under the [GNU GPL v3](./LICENSE).
