@@ -3,9 +3,9 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   _request: Request,
-  context: { params: { environmentId: string } },
+  context: { params: Promise<{ environmentId: string }> },
 ) {
-  const { environmentId } = context.params;
+  const { environmentId } = (await context.params);
 
   const environment = await useEnvironment(environmentId);
 

@@ -1,11 +1,12 @@
-import { cookies } from "next/headers";
+import { cookies, type UnsafeUnwrappedCookies } from "next/headers";
 import { Textarea } from "@src/components/ui/textarea";
 import { Label } from "@src/components/ui/label";
 import CopyButton from "@src/components/copyButton/copyButton";
 
-const TokenPage = async () => {
+const ToknPage = async () => {
   const cookieStore = await cookies();
   const token = cookieStore.get("ENVCAT_TOKEN").value;
+
 
   return (
     <div className="flex-1 gap-4 flex flex-col">
