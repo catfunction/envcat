@@ -158,7 +158,7 @@ const AddVariableForm = ({
       form.reset();
       router.refresh();
     } catch (e) {
-      toast.error("Error adding variables", e.message);
+      toast.error(`Error adding variables: ${e.message}`);
     }
   };
 
