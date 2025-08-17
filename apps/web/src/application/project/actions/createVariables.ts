@@ -15,7 +15,7 @@ const createVariables = async (values: {
       prisma.environment.update({
         where: { id: environment },
         data: { version: createId() },
-      }),
+      })
     );
     values.variables.forEach((variable) => {
       createVariablesPromises.push({
@@ -47,6 +47,8 @@ const createVariables = async (values: {
 
   try {
     await Promise.all(createEnvironmentPromises);
+
+    return { success: true };
   } catch (e) {
     console.error(e);
   }

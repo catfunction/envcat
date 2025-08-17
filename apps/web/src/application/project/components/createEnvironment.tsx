@@ -59,7 +59,11 @@ const CreateEnvironment = ({ projectId }: { projectId: string }) => {
 
   return (
     <Dialog open={showDialog} onOpenChange={setDialog}>
-      <Button className="flex gap-2" onClick={() => setDialog(true)}>
+      <Button
+        variant="outline"
+        className="flex gap-2"
+        onClick={() => setDialog(true)}
+      >
         <Folder />
         Create environment
       </Button>

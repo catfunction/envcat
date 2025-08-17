@@ -25,8 +25,11 @@ const ProjectSwitcher = ({ children }) => {
   useEffect(() => {
     setOpen(false);
 
-    const projectTitle = document.title.split("|")[1].trim();
-    setProject(projectTitle);
+    const documentTitle = document.title.split("|");
+    if (documentTitle.length > 1) {
+      const projectTitle = document.title.split("|")[1].trim();
+      setProject(projectTitle);
+    }
   }, [pathname]);
 
   return (
