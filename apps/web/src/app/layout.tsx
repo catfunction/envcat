@@ -2,6 +2,7 @@ import "@src/globals.css";
 import { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { Toaster } from "@src/components/ui/toaster";
+import { Toaster as SonnerToaster } from "@src/components/ui/sonner";
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
@@ -12,6 +13,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
       <body className={`${GeistSans.className} font-sans`}>
         <main>{children}</main>
         <Toaster />
+        <SonnerToaster />
       </body>
     </html>
   );
