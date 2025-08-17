@@ -54,7 +54,7 @@ const VariablesTable = ({ project }: { project: projectWithEnvironments }) => {
         <Button
           variant="link"
           size="sm"
-          className="flex flew-row gap-2"
+          className="flex flex-row gap-2"
           onClick={onClick}
         >
           {variablesVisible && <EyeOff />}
