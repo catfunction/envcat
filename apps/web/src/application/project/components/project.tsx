@@ -4,6 +4,12 @@ import { Card, CardContent } from "@src/components/ui/card";
 import CreateEnvironment from "@src/application/project/components/createEnvironment";
 import VariablesTable from "@src/application/project/components/variablesTable";
 import VariablesSheet from "@src/application/project/components/variablesSheet";
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@src/components/ui/tabs";
 
 const Project = async ({ projectId }) => {
   const project = await useProject(projectId);
@@ -31,7 +37,33 @@ const Project = async ({ projectId }) => {
           </CardContent>
         </Card>
       )}
-      {project.environments.length > 0 && <VariablesTable project={project} />}
+      {project.environments.length > 0 && (
+        <Tabs defaultValue={project.environments[0].name} className="w-full">
+          <TabsList className="w-full">
+            {project.environments.map((env) => (
+              <TabsTrigger
+                key={env.name}
+                value={env.name}
+                className="flex-1 w-full"
+              >
+                {env.name}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+          {project.environments.map((env) => (
+            <TabsContent key={env.name} value={env.name} className="w-full">
+              <div className="w-full">
+                <VariablesTable
+                  project={{
+                    ...project,
+                    environments: [env],
+                  }}
+                />
+              </div>
+            </TabsContent>
+          ))}
+        </Tabs>
+      )}
     </div>
   );
 };
