@@ -1,10 +1,10 @@
-import { cookies } from "next/headers";
+import { cookies, type UnsafeUnwrappedCookies } from "next/headers";
 import { Textarea } from "@src/components/ui/textarea";
 import { Label } from "@src/components/ui/label";
 import CopyButton from "@src/components/copyButton/copyButton";
 
 const TokenPage = () => {
-  const token = cookies().get("ENVCAT_TOKEN").value;
+  const token = (cookies() as unknown as UnsafeUnwrappedCookies).get("ENVCAT_TOKEN").value;
 
   return (
     <div className="flex-1 gap-4 flex flex-col">

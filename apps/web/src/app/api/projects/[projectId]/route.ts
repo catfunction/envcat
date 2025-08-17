@@ -3,9 +3,9 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   _request: Request,
-  context: { params: { projectId: string } },
+  context: { params: Promise<{ projectId: string }> },
 ) {
-  const { projectId } = context.params;
+  const { projectId } = (await context.params);
   const projects = await useProject(projectId);
 
   return NextResponse.json(projects);
