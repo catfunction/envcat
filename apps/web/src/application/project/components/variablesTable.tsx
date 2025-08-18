@@ -11,8 +11,14 @@ import { projectWithEnvironments } from "@src/application/project/types";
 
 const VariablesTable = ({ project }: { project: projectWithEnvironments }) => {
   const [variablesVisible, setVariablesVisible] = useState(false);
+  const [search, setSearch] = useState("");
 
   const data = getDataFromProject(project);
+  const filteredData = search
+    ? data.filter((row) =>
+        row.variable.toLowerCase().includes(search.toLowerCase())
+      )
+    : data;
   const columns = [
     {
       accessorKey: "variable",
@@ -50,7 +56,12 @@ const VariablesTable = ({ project }: { project: projectWithEnvironments }) => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-row justify-between items-center">
-        <Input placeholder="Search variables..." className="max-w-[300px]" />
+        <Input
+          placeholder="Search variables..."
+          className="max-w-[300px]"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
         <Button
           variant="link"
           size="sm"
@@ -63,7 +74,7 @@ const VariablesTable = ({ project }: { project: projectWithEnvironments }) => {
         </Button>
       </div>
       <div className="rounded-md border">
-        <DataTable data={data} columns={columns} />
+        <DataTable data={filteredData} columns={columns} />
       </div>
     </div>
   );
