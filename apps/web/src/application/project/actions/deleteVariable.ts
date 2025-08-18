@@ -2,7 +2,12 @@
 
 import { prisma } from "database";
 
-const deleteVariable = async ({ environmentId, name }) => {
+type DeleteVariableParams = {
+  environmentId: string;
+  name: string;
+};
+
+const deleteVariable = async ({ environmentId, name }: DeleteVariableParams) => {
   await prisma.variable.deleteMany({
     where: {
       name,
