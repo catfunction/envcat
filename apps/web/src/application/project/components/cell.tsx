@@ -41,6 +41,7 @@ const Cell = ({
   variableName?: string;
 }) => {
   const [open, setOpen] = useState(false);
+
   return (
     <div className="flex flex-row gap-2 justify-between items-center">
       <div
