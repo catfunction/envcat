@@ -23,7 +23,7 @@ const CopyButton = ({ value }: { value: string }) => {
   };
 
   return (
-    <Button variant="outline" className="h-6" onClick={copyToClipboard}>
+    <Button variant="outline" className="h-6 p-2" onClick={copyToClipboard}>
       <Copy size={14} />
     </Button>
   );
