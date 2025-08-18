@@ -111,7 +111,7 @@ const VariablesTable = ({ project }: { project: projectWithEnvironments }) => {
               setDeleting(null);
               router.refresh();
             }}
-            deleting={deleting === variableName + environment.name}
+            deleting={deleting === variableName + ":" + environment.name}
           />
         );
       },
