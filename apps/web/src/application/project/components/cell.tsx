@@ -23,7 +23,7 @@ const Cell = ({
   return (
     <div className="flex flex-row gap-2 justify-between items-center">
       <div
-        className="items-center cursor-pointer font-semibold overflow-hidden text-ellipsis"
+        className="items-center cursor-pointer font-semibold overflow-hidden text-ellipsis flex-1"
         onClick={onEdit}
       >
         {isEditing ? (

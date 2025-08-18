@@ -2,7 +2,8 @@
 
 import { Eye, EyeOff } from "lucide-react";
 import { Button } from "@src/components/ui/button";
-import { useState } from "react";
+import { useMemo, useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { DataTable } from "@src/components/ui/dataTable";
 import { Input } from "@src/components/ui/input";
 import Cell from "@src/application/project/components/cell";
@@ -12,6 +13,7 @@ import { projectWithEnvironments } from "@src/application/project/types";
 
 const VariablesTable = ({ project }: { project: projectWithEnvironments }) => {
   const [variablesVisible, setVariablesVisible] = useState(false);
+  const router = useRouter();
   const [search, setSearch] = useState("");
   const [editingCell, setEditingCell] = useState<{
     variable: string;
@@ -19,12 +21,18 @@ const VariablesTable = ({ project }: { project: projectWithEnvironments }) => {
     value: string;
   } | null>(null);
 
-  const data = getDataFromProject(project);
-  const filteredData = search
-    ? data.filter((row) =>
-        row.variable.toLowerCase().includes(search.toLowerCase())
-      )
-    : data;
+  const [data, setData] = useState(() => getDataFromProject(project));
+
+  useEffect(() => {
+    setData(getDataFromProject(project));
+  }, [project, variablesVisible]);
+  const filteredData = useMemo(() => {
+    return search
+      ? data.filter((row) =>
+          row.variable.toLowerCase().includes(search.toLowerCase())
+        )
+      : data;
+  }, [search, data]);
   const columns = [
     {
       accessorKey: "variable",
@@ -77,7 +85,7 @@ const VariablesTable = ({ project }: { project: projectWithEnvironments }) => {
                   environmentName: environment.name,
                   value: editingCell.value,
                 });
-                // Aquí podrías refrescar los datos del proyecto si es necesario
+                router.refresh();
               }
               setEditingCell(null);
             }}
@@ -90,7 +98,7 @@ const VariablesTable = ({ project }: { project: projectWithEnvironments }) => {
                     environmentName: environment.name,
                     value: editingCell.value,
                   });
-                  // Aquí podrías refrescar los datos del proyecto si es necesario
+                  router.refresh();
                 }
                 setEditingCell(null);
               } else if (e.key === "Escape") {
