@@ -53,6 +53,20 @@ const VariablesTable = ({ project }: { project: projectWithEnvironments }) => {
           editingCell &&
           editingCell.variable === variableName &&
           editingCell.environment === environment.name;
+
+        const handleEdit = async () => {
+          if (isEditing && editingCell.value !== cellData.value) {
+            await updateVariable({
+              projectId: project.id,
+              name: variableName,
+              environmentName: environment.name,
+              value: editingCell.value,
+            });
+            router.refresh();
+          }
+          setEditingCell(null);
+        };
+
         return (
           <Cell
             value={cellData.value}
@@ -77,30 +91,10 @@ const VariablesTable = ({ project }: { project: projectWithEnvironments }) => {
                 });
               }
             }}
-            onBlur={async () => {
-              if (isEditing && editingCell.value !== cellData.hiddenValue) {
-                await updateVariable({
-                  projectId: project.id,
-                  name: variableName,
-                  environmentName: environment.name,
-                  value: editingCell.value,
-                });
-                router.refresh();
-              }
-              setEditingCell(null);
-            }}
+            onBlur={handleEdit}
             onKeyDown={async (e) => {
               if (e.key === "Enter") {
-                if (isEditing && editingCell.value !== cellData.value) {
-                  await updateVariable({
-                    projectId: project.id,
-                    name: variableName,
-                    environmentName: environment.name,
-                    value: editingCell.value,
-                  });
-                  router.refresh();
-                }
-                setEditingCell(null);
+                await handleEdit();
               } else if (e.key === "Escape") {
                 setEditingCell(null);
               }
