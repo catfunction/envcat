@@ -10,9 +10,11 @@ import Cell from "@src/application/project/components/cell";
 import updateVariable from "@src/application/project/actions/updateVariable";
 import getDataFromProject from "@src/application/project/helpers/getDataFromProject";
 import { projectWithEnvironments } from "@src/application/project/types";
+import deleteVariable from "@src/application/project/actions/deleteVariable";
 
 const VariablesTable = ({ project }: { project: projectWithEnvironments }) => {
   const [variablesVisible, setVariablesVisible] = useState(false);
+  const [deleting, setDeleting] = useState<string | null>(null);
   const router = useRouter();
   const [search, setSearch] = useState("");
   const [editingCell, setEditingCell] = useState<{
@@ -73,6 +75,7 @@ const VariablesTable = ({ project }: { project: projectWithEnvironments }) => {
             hiddenValue={cellData.hiddenValue}
             isEditing={isEditing}
             editValue={isEditing ? editingCell.value : cellData.value}
+            variableName={variableName}
             onEdit={() => {
               if (!isEditing && variablesVisible) {
                 setEditingCell({
@@ -99,6 +102,16 @@ const VariablesTable = ({ project }: { project: projectWithEnvironments }) => {
                 setEditingCell(null);
               }
             }}
+            onDelete={async () => {
+              setDeleting(variableName + environment.name);
+              await deleteVariable({
+                environmentId: environment.id,
+                name: variableName,
+              });
+              setDeleting(null);
+              router.refresh();
+            }}
+            deleting={deleting === variableName + environment.name}
           />
         );
       },
