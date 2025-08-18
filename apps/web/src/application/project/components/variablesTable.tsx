@@ -18,7 +18,13 @@ const VariablesTable = ({ project }: { project: projectWithEnvironments }) => {
     ? data.filter((row) =>
         row.variable.toLowerCase().includes(search.toLowerCase())
       )
-    : data;
+  const filteredData = useMemo(() => {
+    return search
+      ? data.filter((row) =>
+          row.variable.toLowerCase().includes(search.toLowerCase())
+        )
+      : data;
+  }, [search, data]);
   const columns = [
     {
       accessorKey: "variable",
