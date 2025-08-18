@@ -78,7 +78,7 @@ const VariablesTable = ({ project }: { project: projectWithEnvironments }) => {
               }
             }}
             onBlur={async () => {
-              if (isEditing && editingCell.value !== cellData.value) {
+              if (isEditing && editingCell.value !== cellData.hiddenValue) {
                 await updateVariable({
                   projectId: project.id,
                   name: variableName,
