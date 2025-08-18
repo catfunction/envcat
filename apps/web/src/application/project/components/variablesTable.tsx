@@ -103,7 +103,7 @@ const VariablesTable = ({ project }: { project: projectWithEnvironments }) => {
               }
             }}
             onDelete={async () => {
-              setDeleting(variableName + environment.name);
+              setDeleting(`${variableName}:${environment.name}`);
               await deleteVariable({
                 environmentId: environment.id,
                 name: variableName,
