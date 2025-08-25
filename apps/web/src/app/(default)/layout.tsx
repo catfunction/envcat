@@ -13,7 +13,7 @@ const DefaultLayout = async ({ children }: { children: React.ReactNode }) => {
         <div className="flex gap-4 items-center">
           <Link href="/">
             <h1 className="text-lg font-semibold flex flex-row gap-1 items-center">
-              <Cat size={30} /> ENVCAT
+              <Cat size={30} /> <span className="text-primary">envcat</span>
             </h1>
           </Link>
           <ProjectSwitcher>
